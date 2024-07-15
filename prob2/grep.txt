@@ -1,0 +1,14 @@
+NAME
+       grep, egrep, fgrep, rgrep - print lines that match patterns
+
+
+   -v, --invert-match
+              Invert the sense of matching, to select non-matching lines.
+   -n, --line-number
+              Prefix each line of output with the 1-based line number within its input file.
+   -C NUM, -NUM, --context=NUM
+              Print NUM lines of output context.  Places a line containing a group separation between contiguous groups of matches.  With the -o or --only-matching option, this has no effect and a warning is given
+
+    -l, --files-with-matches
+              supress normal output,instead pritn the name of each input file from which  output wouold normally have been printed.scanning each input file stops upon first match.
+              

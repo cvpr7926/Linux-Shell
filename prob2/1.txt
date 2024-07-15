@@ -1,0 +1,87 @@
+gia]vf
+fv cmc
+dlkfvfv
+dlkkvc cv
+ m,ncz mc 
+ m  c.x v
+ ,mm,  cxv
+ cnkdvklvf
+ z lkxv cv 
+  ckk cvkgb
+  k l cb\
+  sckfdo;kgfb
+  xz kk xcl;b
+  c klk vl b
+  n vk cv
+  kdckfv
+  dklvfklbgzf
+  nvkbgl
+   vkb gv
+   dcvffv
+   
+   cdl;kvf
+   bg
+    while ((current = readdir(currstr)) != NULL) {
+    if (current->d_type == DT_DIR) {
+            char path[1000000];
+            snprintf(path, sizeof(path), "/proc/%s/status", current->d_name);
+            FILE *file;
+            if ((file = fopen(path, "r")) != NULL) {
+                char line[1000000];
+                char name[1000];
+		char name1[1000];
+                char pwd[1000];
+                char status1[1000];
+		int status;
+                int utime, stime;
+		int uid;
+		int core;
+                int tty_nr;
+		 int processor;
+		 struct user_info;
+		 int  ppid;
+		 int  pid;
+int tty_fd = open("/dev/tty", O_RDONLY);
+if (tty_fd == -1) {
+    perror("open");
+}
+    char *tty_name = (tty_nr == 0) ? NULL: ttyname(tty_fd);;
+
+                while (fgets(line, sizeof(line), file) != NULL) {
+
+			if(sscanf(line,"Uid : %d",&uid)==1){
+					break;
+		}
+	 if (strncmp(line, "PPid:", 5) == 0) {
+                           sscanf(line, "PPid:\t%d", &ppid);}
+			
+                    if (sscanf(line, "Name: %s", name) == 1) {
+                        sscanf(current->d_name, "%d", &pid);
+                    }
+                    if (sscanf(line, "State: %d",&status) == 1) {
+                        break;
+                    }
+                    if (sscanf(line, "State: %s", status1) == 1) {
+                        break;
+                    }
+                    if (sscanf(line, "utime: %d", &utime) == 1) {
+                        utime /= sysconf(_SC_CLK_TCK);
+                    }
+                    if (sscanf(line, "stime: %d", &stime) == 1) {
+                        stime /= sysconf(_SC_CLK_TCK);
+                    }}              
+  struct passwd *pw = getpwuid(uid);
+                if (pwd == NULL) {
+                    fprintf(stderr, "Failed to get username for UID %d\n", uid);
+                    continue; }
+                char *username = pw->pw_name;
+		fclose(file);
+                if (status != -1) {
+                    time_t now = time(NULL);
+                    struct tm *timenow = localtime(&now);
+                    char time[10];
+                    strftime(time, sizeof(time), "%H:%M", timenow); 
+               
+                   printf("%-8d %c%-10s %2d:%-5ld -%-10s\n", pid,(tty_nr==0)?'?':' ',(tty_name == NULL) ? " ": tty_name , utime, now % 60, name
+			 );
+		}}}}

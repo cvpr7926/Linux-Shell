@@ -1,0 +1,16 @@
+NAME
+       ls - list directory contents
+ -a, --all
+        do not ignore entries starting with .
+ -l     
+        use a long listing format
+ -o     
+        like -l, but do not list group information
+ -g     
+        like -l, but do not list owner
+
+
+
+
+
+
